@@ -57,5 +57,5 @@ EOF
 
 BOARD_GPS_LIBRARIES := libgps librpc
 
-USE_CAMERA_STUB := false
+USE_CAMERA_STUB := true
 EOF
