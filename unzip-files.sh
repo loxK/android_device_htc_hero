@@ -46,6 +46,7 @@ unzip -j -o ../../../${DEVICE}_update.zip -d ../../../vendor/htc/$DEVICE/proprie
 	 system/lib/libOmxVidEnc.so \
 	 system/lib/libopencorehw.so \
 	 system/lib/libqcomm_omx.so \
+	 system/lib/libstagefrighthw.so \
 	 system/lib/libstagefright_omx.so \
 	 system/lib/libstagefright.so
 	 
@@ -99,6 +100,7 @@ PRODUCT_COPY_FILES += \\
     vendor/htc/__DEVICE__/proprietary/libOmxVidEnc.so:system/lib/libOmxVidEnc.so \\
     vendor/htc/__DEVICE__/proprietary/libopencorehw.so:system/lib/libopencorehw.so \\
     vendor/htc/__DEVICE__/proprietary/libqcomm_omx.so:system/lib/libqcomm_omx.so \\
+    vendor/htc/__DEVICE__/proprietary/libstagefrighthw.so:system/lib/libstagefrighthw.so \\
 EOF
 
 ./setup-makefiles.sh
