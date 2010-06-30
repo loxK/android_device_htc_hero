@@ -41,32 +41,6 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x127c0000
 
 TARGET_RECOVERY_UI_LIB := librecovery_ui_hero librecovery_ui_htc
 
-# Copyright (C) 2007 The Android Open Source Project
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
-# config.mk
-#
-# Product-specific compile-time definitions.
-#
-
-# WARNING: This line must come *before* including the proprietary
-# variant, so that it gets overwritten by the parent (which goes
-# against the traditional rules of inheritance).
-USE_CAMERA_STUB := true
-
--include vendor/htc/hero/BoardConfigVendor.mk
-
 TARGET_BOARD_PLATFORM := msm7k
 TARGET_BOARD_PLATFORM_GPU := qcom
 TARGET_CPU_ABI := armeabi
