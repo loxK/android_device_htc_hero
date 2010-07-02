@@ -114,7 +114,7 @@ libsystem_server.so     0xA7C00000 # [~1M]
 libime.so               0xA7B00000 # [???]
 libaudio.so             0xA7A00000 # [~1M] (moved for hero)
 libspeech.so            0xA7900000 # [~1M] (moved for hero)
-libsonivox.so			0A78000000 # [~1M] (moved for hero)
+libsonivox.so			0xA7800000 # [~1M] (moved for hero)
 libvorbisidec.so        0xA7700000 # [~1M] (moved for hero)
 libdiskconfig.so        0xA7600000 # [<64K]
 libemoji.so             0xA7500000 # [<64K]
