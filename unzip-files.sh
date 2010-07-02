@@ -26,6 +26,7 @@ unzip -j -o ../../../${DEVICE}_update.zip -d ../../../vendor/htc/$DEVICE/proprie
 	 system/etc/AudioPreProcess.csv \
          system/etc/firmware/avpr.bts \
      	 system/etc/firmware/brf6300.bin \
+     	 system/etc/firmware/brf6350.bin \
      	 system/etc/firmware/fmc_init_1273.2.bts \
      	 system/etc/firmware/fm_rx_init_1273.2.bts \
      	 system/etc/firmware/tiinit_5.3.53.bts \
@@ -79,12 +80,13 @@ PRODUCT_COPY_FILES += \\
     vendor/htc/__DEVICE__/proprietary/AudioFilter.csv:system/etc/AudioFilter.csv \\
     vendor/htc/__DEVICE__/proprietary/AudioPara4.csv:system/etc/AudioPara4.csv \\
     vendor/htc/__DEVICE__/proprietary/AudioPreProcess.csv:system/etc/AudioPreProcess.csv \\
-    vendor/htc/__DEVICE__/proprietary/brf6300.bin:system/etc/firmware/avpr.bts \\
+    vendor/htc/__DEVICE__/proprietary/avpr.bts:system/etc/firmware/avpr.bts \\
     vendor/htc/__DEVICE__/proprietary/brf6300.bin:system/etc/firmware/brf6300.bin \\
-    vendor/htc/__DEVICE__/proprietary/brf6300.bin:system/etc/firmware/fmc_init_1273.2.bts \\
-    vendor/htc/__DEVICE__/proprietary/brf6300.bin:system/etc/firmware/fm_rx_init_1273.2.bts \\
-    vendor/htc/__DEVICE__/proprietary/brf6300.bin:system/etc/firmware/tiinit_5.3.53.bts \\
-    vendor/htc/__DEVICE__/proprietary/brf6300.bin:system/etc/firmware/vac_config.ini \\
+    vendor/htc/__DEVICE__/proprietary/brf6350.bin:system/etc/firmware/brf6350.bin \\
+    vendor/htc/__DEVICE__/proprietary/fmc_init_1273.2.bts:system/etc/firmware/fmc_init_1273.2.bts \\
+    vendor/htc/__DEVICE__/proprietary/fm_rx_init_1273.2.bts:system/etc/firmware/fm_rx_init_1273.2.bts \\
+    vendor/htc/__DEVICE__/proprietary/tiinit_5.3.53.bts:system/etc/firmware/tiinit_5.3.53.bts \\
+    vendor/htc/__DEVICE__/proprietary/vac_config.ini:system/etc/firmware/vac_config.ini \\
     vendor/htc/__DEVICE__/proprietary/Fw1251r1c.bin:system/etc/wifi/Fw1251r1c.bin \\
     vendor/htc/__DEVICE__/proprietary/libGLES_qcom.so:system/lib/egl/libGLES_qcom.so \\
 	vendor/htc/__DEVICE__/proprietary/libaudioeq.so:system/lib/libaudioeq.so \\
@@ -98,9 +100,6 @@ PRODUCT_COPY_FILES += \\
     vendor/htc/__DEVICE__/proprietary/libOmxH264Dec.so:system/lib/libOmxH264Dec.so \\
     vendor/htc/__DEVICE__/proprietary/libOmxMpeg4Dec.so:system/lib/libOmxMpeg4Dec.so \\
     vendor/htc/__DEVICE__/proprietary/libOmxVidEnc.so:system/lib/libOmxVidEnc.so \\
-    vendor/htc/__DEVICE__/proprietary/libopencorehw.so:system/lib/libopencorehw.so \\
-    vendor/htc/__DEVICE__/proprietary/libqcomm_omx.so:system/lib/libqcomm_omx.so \\
-    vendor/htc/__DEVICE__/proprietary/libstagefrighthw.so:system/lib/libstagefrighthw.so \\
 EOF
 
 ./setup-makefiles.sh
