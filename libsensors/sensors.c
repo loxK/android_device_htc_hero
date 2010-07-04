@@ -67,7 +67,7 @@ struct sensors_data_context_t {
  */
 
 static const struct sensor_t sSensorList[] = {
-        { "AK8973 3-axis Accelerometer",
+        { "BMA150 3-axis Accelerometer",
                 "The Android Open Source Project",
                 1, SENSORS_HANDLE_BASE+ID_A,
                 SENSOR_TYPE_ACCELEROMETER, 2.8f, 1.0f/4032.0f, 3.0f, { } },
