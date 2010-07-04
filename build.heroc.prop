@@ -1,0 +1,11 @@
+ro.product.model=HTC Hero CDMA
+ro.product.brand=htc
+ro.product.name=heroc
+ro.product.device=heroc
+ro.product.board=heroc
+# ro.build.product is obsolete; use ro.product.device
+ro.build.product=heroc
+
+# CDMA
+ro.telephony.default_network=4
+

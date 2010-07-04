@@ -1,0 +1,175 @@
+on early-init
+    device mtd@misc 0460 radio diag
+
+on init
+# btips DDB location
+    mkdir /data/btips 0777 bluetooth bluetooth
+    mkdir /data/btips/TI 0777 bluetooth bluetooth
+    mkdir /data/btips/TI/opp 0777 bluetooth bluetooth
+    
+# for PPST(OS mode) Allen Hsu 20100104
+    mkdir /data/local/dmdata
+    chmod 0777 /data/local/dmdata
+
+on boot
+# unmap left alt to avoid console switch
+    setkey 0x0 0x38 0x0
+# device reset SEND+MENU+END
+    setkey 0x0 0xe7 0x706
+    setkey 0x0 0x8b 0x707
+
+    setkey 0x40 0xe7 0x706
+    setkey 0x40 0x8b 0x707
+
+    setkey 0x80 0xe7 0x706
+    setkey 0x80 0x8b 0x707
+
+    setkey 0xc0 0xe7 0x706
+    setkey 0xc0 0x8b 0x707
+    setkey 0xc0 0x6b 0x20c
+
+    mkdir /data/misc/wifi 0770 wifi wifi
+    mkdir /data/misc/wifi/sockets 0770 wifi wifi
+    mkdir /data/misc/dhcp 0770 dhcp dhcp
+    chown dhcp dhcp /data/misc/dhcp
+
+    # bluetooth power up/down interface
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+    chmod 0660 /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth sys/devices/platform/msm_serial_hs.0/serial_lock_cpu
+    chmod 0660 /sys/devices/platform/msm_serial_hs.0/serial_lock_cpu
+
+    # Permissions for Liblights.
+    chown system system /sys/class/leds/green/brightness
+    chown system system /sys/class/leds/green/blink
+    chown system system /sys/class/leds/amber/brightness
+    chown system system /sys/class/leds/amber/blink
+    chown system system /sys/class/leds/red/brightness
+    chown system system /sys/class/leds/red/blink
+    chown system system /sys/class/leds/blue/brightness
+    chown system system /sys/class/leds/blue/blink
+    chown system system /sys/class/leds/jogball-backlight/brightness
+    chown system system /sys/class/leds/jogball-backlight/color
+    chown system system /sys/class/leds/jogball-backlight/period
+    chown system system /sys/class/leds/button-backlight/brightness
+    chown system system /sys/class/leds/lcd-backlight/brightness
+
+    # enable the GPS
+    setprop ro.ril.def.agps.mode 2
+
+    # Power Management
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 245000
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 710400
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ondemand
+
+    setprop ro.ril.fast.dormancy.rule 1
+    setprop ro.ril.fast.dormancy.timeout 2
+
+
+    # set CABC permissions
+    chown system system /sys/class/leds/lcd-backlight/auto
+
+    # set all crashes to bin in /data/btips with a descriptive core filename
+    # DEBUG
+    write /proc/sys/kernel/core_pattern /data/btips/core_%e_p_%p_s_%s_t_%t
+
+# Enable low memory killer to check file pages
+    write /sys/module/lowmemorykiller/parameters/minfile 0,0,0,0,5632,6144
+    write /sys/module/lowmemorykiller/parameters/check_filepages 1
+
+on property:init.svc.wpa_supplicant=stopped
+    start dhcp-release
+
+on property:init.svc.dhcp-release=stopped
+    stop dhcpcd
+
+# for enabling EVDO Data-quietcblongs ;)
+
+on property:persist.sys.country=us
+    start echofor3
+
+service echofor3 /system/xbin/echo3
+    oneshot
+
+# compass/accelerometer daemon
+service akmd /system/bin/akmd
+    user compass
+    group compass misc input
+
+
+service wlan_loader /system/bin/wlan_loader \
+    -f /system/etc/wifi/Fw1251r1c.bin -e /proc/calibration \
+    -i /system/etc/wifi/tiwlan.ini
+    disabled
+    oneshot
+
+service wpa_supplicant /system/bin/wpa_supplicant \
+    -Dtiwlan0 -itiwlan0 -c/data/misc/wifi/wpa_supplicant.conf
+    user wifi
+    group wifi inet
+    socket wpa_tiwlan0 dgram 660 wifi wifi
+    disabled
+    oneshot
+
+service dhcpcd /system/bin/dhcpcd -ABKL -d tiwlan0
+    disabled
+    oneshot
+
+service dhcp-release /system/bin/dhcpcd -k tiwlan0
+    disabled
+    oneshot
+
+service hciattach /system/bin/hciattach \
+    -n -s 115200 /dev/ttyHS0 texasalt 4000000 flow
+    user bluetooth
+    group bluetooth net_bt_admin
+    disabled
+
+#btips - 2.22
+service btips /system/bin/btipsd --logfile /data/btips/btips_log.txt -no_android_log
+    socket bluetooth stream 660 bluetooth bluetooth
+    socket dbus_bluetooth stream 660 bluetooth bluetooth
+    group bluetooth net_bt_admin misc
+    disabled # the MCP monitor service is responsible for bringing up the daemon
+    oneshot
+
+# bugreport is triggered by the KEY_BACK and KEY_MENU keycodes
+service bugreport /system/bin/dumpstate -d -v -z -o /sdcard/bugreports/bugreport
+    disabled
+    oneshot
+    keycodes 158 139
+
+# for USB internet sharing
+service udhcpd /system/bin/udhcpd
+	disabled
+	oneshot
+
+service netsharing_on /system/bin/netsharing net on
+	disabled
+	oneshot
+
+service netsharing_off /system/bin/netsharing net off
+	disabled
+	oneshot
+
+# HTC IPC server
+service htcipcd /system/bin/htcipcd
+    user root
+    group root system
+
+# CIQ backend daemon
+service iqd /system/bin/iqd
+    user root
+    group root system
+
+# CIQ frontend daemon
+service iqfd /system/bin/iqfd
+    user root
+    group root system
+
+service dmagent /system/bin/dmagent -N -P19 -VSY
+    socket dmagent stream 660 root radio
+    user root
+    group radio cache inet misc
+

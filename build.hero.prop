@@ -1,0 +1,11 @@
+ro.product.model=HTC Hero
+ro.product.brand=htc
+ro.product.name=hero
+ro.product.device=hero
+ro.product.board=hero
+# ro.build.product is obsolete; use ro.product.device
+ro.build.product=hero
+
+# GSM
+ro.telephony.default_network=0
+

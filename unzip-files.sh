@@ -44,12 +44,7 @@ unzip -j -o ../../../${DEVICE}_update.zip -d ../../../vendor/htc/$DEVICE/proprie
 	 system/lib/libOmxCore.so \
 	 system/lib/libOmxH264Dec.so \
 	 system/lib/libOmxMpeg4Dec.so \
-	 system/lib/libOmxVidEnc.so \
-	 system/lib/libopencorehw.so \
-	 system/lib/libqcomm_omx.so \
-	 system/lib/libstagefrighthw.so \
-	 system/lib/libstagefright_omx.so \
-	 system/lib/libstagefright.so
+	 system/lib/libOmxVidEnc.so
 	 
 chmod 755 ../../../vendor/htc/$DEVICE/proprietary/akmd
 

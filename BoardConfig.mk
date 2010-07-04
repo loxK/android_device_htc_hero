@@ -24,7 +24,7 @@ USE_CAMERA_STUB := true
 
 -include vendor/htc/hero/BoardConfigVendor.mk
 
-TARGET_BOOTLOADER_BOARD_NAME := hero
+TARGET_BOOTLOADER_BOARD_NAME := hero,heroc
 
 # # cat /proc/mtd
 # dev:    size   erasesize  name
@@ -46,9 +46,12 @@ TARGET_ARCH_VARIANT := armv5te
 TARGET_CPU_ABI := armeabi
 
 TARGET_NO_BOOTLOADER := true
-TARGET_BOOTLOADER_BOARD_NAME := hero
 TARGET_NO_RADIOIMAGE := true
 TARGET_NO_RECOVERY := true
+
+TARGET_BOOTLOADER_BOARD_NAME := hero
+TARGET_OTA_ASSERT_DEVICE := hero,heroc
+PRODUCT_BUILD_PROP_OVERRIDES += TARGET_BOOTLOADER_BOARD_NAME=hero
 
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER := CUSTOM

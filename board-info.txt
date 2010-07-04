@@ -1,5 +1,5 @@
-reject serialno=HT9*|HT80*|HT81*
-require board=hero
-require version-bootloader=1.76.2007|1.76.0007|1.76.3004|1.76.0004
-require version-baseband=6.35.15.11
+reject serialno=HT*
+require board=hero|heroc
+require version-bootloader=*
+require version-baseband=*
 require version-cpld=10|12
