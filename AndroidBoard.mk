@@ -22,7 +22,7 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/init.rc | $(ACP)
 	$(transform-prebuilt-to-target)
 
-# Hero CDMA
+# Hero GSM
 
 file := $(TARGET_OUT_KEYLAYOUT)/hero-keypad.kl
 ALL_PREBUILT += $(file)
