@@ -18,7 +18,9 @@ DEVICE_PACKAGE_OVERLAYS := device/htc/hero/overlay
 
 PRODUCT_PACKAGES := \
     sensors.hero \
-    sensors.heroc
+    sensors.heroc \
+    lights.hero \
+    lights.heroc
 
 # proprietary side of the device
 $(call inherit-product-if-exists, vendor/htc/hero/device_hero-vendor.mk)
