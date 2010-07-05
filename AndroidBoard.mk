@@ -16,12 +16,6 @@ LOCAL_PATH := $(call my-dir)
 
 $(call add-radio-file,recovery/images/firmware_install.565)
 
-# specific init.rc witch will hopefully fix jogball alerts and leds
-file := $(TARGET_ROOT_OUT)/init.rc
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/init.rc | $(ACP)
-	$(transform-prebuilt-to-target)
-
 # Hero GSM
 
 file := $(TARGET_OUT_KEYLAYOUT)/hero-keypad.kl

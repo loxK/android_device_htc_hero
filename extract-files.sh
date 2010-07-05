@@ -62,6 +62,7 @@ adb pull /system/lib/libOmxVidEnc.so ../../../vendor/htc/$DEVICE/proprietary/lib
 
 PRODUCT_COPY_FILES := \\
     vendor/htc/__DEVICE__/proprietary/libgps.so:obj/lib/libgps.so
+    device/htc/__DEVICE__/init.rc:root/init.rc
 
 PRODUCT_COPY_FILES += \\
     vendor/htc/__DEVICE__/proprietary/akmd:system/bin/akmd \\
