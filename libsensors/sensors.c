@@ -79,7 +79,7 @@ struct sensors_control_context_t {
 
 struct sensors_data_context_t {
     struct sensors_data_device_t device; // must be first
-    int events_fd[3];
+    int events_fd[2];
     sensors_data_t sensors[MAX_NUM_SENSORS];
     uint32_t pendingSensors;
 };
@@ -111,8 +111,10 @@ static const struct sensor_t sSensorList[] = {
                 SENSOR_TYPE_LIGHT, 10240.0f, 1.0f, 0.5f, { } },
 };
 
-static const float sLuxValues[8] = {
+static const float sLuxValues[10] = {
     10.0,
+    40.0,
+    90.0,
     160.0,
     225.0,
     320.0,
@@ -152,7 +154,6 @@ const struct sensors_module_t HAL_MODULE_INFO_SYM = {
 /*****************************************************************************/
 
 #define AKM_DEVICE_NAME     "/dev/akm8973_aot"
-#define CM_DEVICE_NAME      "/dev/cm3602"
 #define LS_DEVICE_NAME      "/dev/lightsensor"
 
 // sensor IDs must be a power of two and
@@ -209,6 +210,7 @@ static int open_inputs(int mode, int *akm_fd, int *l_fd)
     strcpy(devname, dirname);
     filename = devname + strlen(devname);
     *filename++ = '/';
+    *akm_fd = *l_fd = -1;
     
     while((de = readdir(dir))) {
         if(de->d_name[0] == '.' &&
@@ -273,6 +275,7 @@ static void close_akm(struct sensors_control_context_t* dev)
 
 static uint32_t read_sensors_state(int fd)
 {
+    if (fd<0) return 0;
     short flags;
     uint32_t sensors = 0;
     // read the actual value of all sensors
@@ -421,11 +424,11 @@ static native_handle_t* control__open_data_source(struct sensors_control_context
     int akm_fd, l_fd;
     
     if (open_inputs(O_RDONLY, &akm_fd, &l_fd) < 0 ||
-            akm_fd < 0 || l_fd < 0) {
+        akm_fd < 0 || l_fd < 0) {
         return NULL;
     }
 
-    handle = native_handle_create(3, 0);
+    handle = native_handle_create(2, 0);
     handle->data[0] = akm_fd;
     handle->data[1] = l_fd;
     return handle;
@@ -575,7 +578,7 @@ static int pick_sensor(struct sensors_data_context_t *dev,
     }
     LOGE("No sensor to return!!! pendingSensors=%08x", dev->pendingSensors);
     // we may end-up in a busy loop, slow things down, just in case.
-    // usleep(100000);
+    usleep(10000);
     return -1;
 }
 static uint32_t data__poll_process_akm_abs(struct sensors_data_context_t *dev,
@@ -666,8 +669,8 @@ static uint32_t data__poll_process_ls_abs(struct sensors_data_context_t *dev,
                 index = event->value;
                 if (index >= 0) {
                     new_sensors |= SENSORS_LIGHT;
-                    if (index >= ARRAY_SIZE(sLuxValues)) {
-                        index = ARRAY_SIZE(sLuxValues) - 1;
+                    if (index >= (int) ARRAY_SIZE(sLuxValues)) {
+                        index = (int) ARRAY_SIZE(sLuxValues) - 1;
                     }
                     dev->sensors[ID_L].light = sLuxValues[index];
                 }
@@ -735,7 +738,7 @@ static int data__poll(struct sensors_data_context_t *dev, sensors_data_t* values
         if (n < 0) {
             LOGE("%s: error from select(%d, %d): %s",
                  __FUNCTION__,
-                 akm_fd, strerror(errno));
+                 akm_fd, ls_fd, strerror(errno));
             return -1;
         }
 
@@ -841,7 +844,6 @@ static int open_sensors(const struct hw_module_t* module, const char* name,
         memset(dev, 0, sizeof(*dev));
         dev->events_fd[0] = -1;
         dev->events_fd[1] = -1;
-        dev->events_fd[2] = -1;
         dev->device.common.tag = HARDWARE_DEVICE_TAG;
         dev->device.common.version = 0;
         dev->device.common.module = module;
