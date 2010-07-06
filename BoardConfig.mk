@@ -74,6 +74,9 @@ BOARD_CAMERA_LIBRARIES := libcameraservice libcamera
 # OpenGL drivers config file path
 BOARD_EGL_CFG := device/htc/hero/egl.cfg
 
+# No authoring clock for OpenCore
+BOARD_NO_PV_AUTHORING_CLOCK := true
+
 # No fallback font by default (space savings)
 NO_FALLBACK_FONT:=true
 
