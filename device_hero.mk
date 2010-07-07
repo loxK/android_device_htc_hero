@@ -66,7 +66,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # media configuration xml file
 PRODUCT_COPY_FILES += \
-    device/htc/dream-sapphire/media_profiles.xml:/system/etc/media_profiles.xml
+    device/htc/hero/media_profiles.xml:/system/etc/media_profiles.xml
 
 # stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common_small.mk)
