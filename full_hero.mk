@@ -61,10 +61,6 @@ PRODUCT_COPY_FILES += \
 ## (2) Also get non-open-source aspects if available
 $(call inherit-product-if-exists, vendor/htc/dream_sapphire/dream_sapphire-vendor.mk)
 
-# Use init.rc from vendor to fix jogball light on heroC
-PRODUCT_COPY_FILES += \
-    device/htc/inc/init.rc:$(TARGET_ROOT_OUT)/root/init.rc
-
 # stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common.mk)
 
