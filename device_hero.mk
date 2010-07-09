@@ -33,7 +33,7 @@ PRODUCT_PACKAGES := \
 $(call inherit-product-if-exists, vendor/htc/hero/device_hero-vendor.mk)
 
 # from device_dream_sapphire.mk
-PRODUCT_COPY_FILES := \
+PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
     frameworks/base/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
     frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
