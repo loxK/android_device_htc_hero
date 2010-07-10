@@ -30,19 +30,12 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
     frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-    frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
-    device/htc/__DEVICE__/init.rc:root/init.rc
+    frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml
+    
 
-# Kernel modules
+# Specific hero init.rc
 PRODUCT_COPY_FILES += \
-    device/htc/__DEVICE__/modules/auth_rpcgss.ko:system/lib/modules/auth_rpcgss.ko \
-    device/htc/__DEVICE__/modules/cifs.ko:system/lib/modules/cifs.ko \
-    device/htc/__DEVICE__/modules/fuse.ko:system/lib/modules/fuse.ko \
-    device/htc/__DEVICE__/modules/lockd.ko:system/lib/modules/lockd.ko \
-    device/htc/__DEVICE__/modules/nfs_acl.ko:system/lib/modules/nfs_acl.ko \
-    device/htc/__DEVICE__/modules/nfs.ko:system/lib/modules/nfs.ko \
-    device/htc/__DEVICE__/modules/rpcsec_gss_krb5.ko:system/lib/modules/rpcsec_gss_krb5.ko \
-    device/htc/__DEVICE__/modules/sunrpc.ko:system/lib/modules/sunrpc.ko
+    device/htc/__DEVICE__/init.rc:root/init.rc
 
 
 PRODUCT_PROPERTY_OVERRIDES := \
