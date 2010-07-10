@@ -34,8 +34,8 @@ PRODUCT_COPY_FILES += \
     
 
 # Specific hero init.rc
-PRODUCT_COPY_FILES += \
-    device/htc/hero/init.rc:root/init.rc
+#PRODUCT_COPY_FILES += \
+#    device/htc/hero/init.rc:root/init.rc
 
 
 PRODUCT_PROPERTY_OVERRIDES := \
