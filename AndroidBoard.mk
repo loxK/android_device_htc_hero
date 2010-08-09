@@ -32,22 +32,6 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := hero-keypad.kcm
 include $(BUILD_KEY_CHAR_MAP)
         
-# Hero CDMA
-
-file := $(TARGET_OUT_KEYLAYOUT)/heroc-keypad.kl
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/heroc-keypad.kl | $(ACP)
-	$(transform-prebuilt-to-target)
-
-file := $(TARGET_ROOT_OUT)/init.heroc.rc
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/init.heroc.rc | $(ACP)
-	$(transform-prebuilt-to-target)
-
-include $(CLEAR_VARS)
-LOCAL_SRC_FILES := heroc-keypad.kcm
-include $(BUILD_KEY_CHAR_MAP)
-
 # Hero generic
 
 $(call add-radio-file,recovery/images/firmware_error.565)
@@ -149,11 +133,6 @@ include $(BUILD_PREBUILT)
 file := $(TARGET_OUT)/build.hero.prop
 ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/build.hero.prop | $(ACP)
-	$(transform-prebuilt-to-target)
-
-file := $(TARGET_OUT)/build.heroc.prop
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/build.heroc.prop | $(ACP)
 	$(transform-prebuilt-to-target)
 
 -include vendor/htc/hero/AndroidBoardVendor.mk

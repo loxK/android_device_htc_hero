@@ -74,5 +74,5 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full.mk)
 
 # Discard inherited values and use our own instead.
 PRODUCT_NAME := full_hero
-PRODUCT_DEVICE := hero,heroc
+PRODUCT_DEVICE := hero
 PRODUCT_MODEL := Full Android on Hero

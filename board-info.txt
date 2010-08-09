@@ -1,5 +1,5 @@
 reject serialno=HT*
-require board=hero|heroc
+require board=hero
 require version-bootloader=*
 require version-baseband=*
 require version-cpld=10|12
