@@ -24,8 +24,7 @@ endif # TARGET_PREBUILT_KERNEL
 DEVICE_PACKAGE_OVERLAYS := device/htc/hero/overlay
 
 PRODUCT_PACKAGES := \
-    sensors.hero \
-    lights.hero 
+    sensors.hero
 
 # proprietary side of the device
 $(call inherit-product-if-exists, vendor/htc/hero/device_hero-vendor.mk)
