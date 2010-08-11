@@ -72,7 +72,6 @@ PRODUCT_SPECIFIC_DEFINES += TARGET_PRELINKER_MAP=\$(TOP)/device/htc/hero/prelink
 
 BOARD_GPS_LIBRARIES := libgps librpc
 
-BOARD_USES_OLD_CAMERA_HACK := true
 USE_CAMERA_STUB := false
 
 EOF
