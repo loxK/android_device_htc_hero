@@ -25,12 +25,17 @@ USE_CAMERA_STUB := true
 -include vendor/htc/hero/BoardConfigVendor.mk
 
 TARGET_BOARD_PLATFORM := msm7k
-TARGET_ARCH_VARIANT := armv5te
-TARGET_CPU_ABI := armeabi
+TARGET_BOARD_PLATFORM_GPU := qcom
 
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 TARGET_NO_RECOVERY := true
+
+# ARMv6-compatible processor rev 5 (v6l)
+TARGET_CPU_ABI := armeabi-v6l
+TARGET_CPU_ABI2 := armeabi
+TARGET_ARCH_VARIANT := armv5te
+TARGET_CPU_ABI := armeabi
 
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER := CUSTOM
@@ -41,22 +46,14 @@ WIFI_DRIVER_MODULE_ARG      := ""
 WIFI_DRIVER_MODULE_NAME     := "wlan"
 WIFI_FIRMWARE_LOADER        := "wlan_loader"
 
-#TARGET_BOOTLOADER_LIBS := \
-#	libboot_board_hero \
-#	libboot_arch_msm7k \
-#	libboot_arch_armv6
-
-#TARGET_BOOTLOADER_LINK_SCRIPT := \
-#	hardware/msm7k/boot/boot.ld
-
 BOARD_USES_GENERIC_AUDIO := false
 
+# Use HTC USB Function Switch to enable tethering via USB
+BOARD_USE_HTC_USB_FUNCTION_SWITCH := true
+
 BOARD_USE_HTC_LIBSENSORS := true
-
 BOARD_USE_HERO_LIBSENSORS := true
-
 BOARD_USES_QCOM_LIBS := true
-
 
 BOARD_KERNEL_CMDLINE := no_console_suspend=1 console=null
 BOARD_KERNEL_BASE := 0x19200000
@@ -69,22 +66,20 @@ BOARD_VENDOR_QCOM_AMSS_VERSION := 6355
 
 # The size of a block that can be marked bad.
 BOARD_FLASH_BLOCK_SIZE := 131072
-BOARD_CAMERA_LIBRARIES := libcameraservice libcamera
+#BOARD_CAMERA_LIBRARIES := libcameraservice libcamera
 
 # OpenGL drivers config file path
 BOARD_EGL_CFG := device/htc/hero/egl.cfg
 
 # No authoring clock for OpenCore
-BOARD_NO_PV_AUTHORING_CLOCK := true
+# BOARD_NO_PV_AUTHORING_CLOCK := true
 
 # Use Eclair libcamera
 
 BOARD_USES_ECLAIR_LIBCAMERA := true
 
 # No fallback font by default (space savings)
-NO_FALLBACK_FONT:=true
-
-TARGET_RECOVERY_UPDATER_LIBS += librecovery_updater_htc
+# NO_FALLBACK_FONT:=true
 
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
 
