@@ -31,7 +31,6 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml
-    
 
 # Specific hero init.rc
 #PRODUCT_COPY_FILES += \
@@ -64,9 +63,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_COPY_FILES += \
     device/htc/hero/media_profiles.xml:/system/etc/media_profiles.xml
     
-## (2) Also get non-open-source aspects if available
-$(call inherit-product-if-exists, vendor/htc/dream_sapphire/dream_sapphire-vendor.mk)
-
 # stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common.mk)
 

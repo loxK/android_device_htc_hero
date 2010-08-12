@@ -23,8 +23,12 @@ endif # TARGET_PREBUILT_KERNEL
 
 DEVICE_PACKAGE_OVERLAYS := device/htc/hero/overlay
 
-PRODUCT_PACKAGES := \
+PRODUCT_PACKAGES += \
+    librs_jni \
     sensors.hero
+
+# Passion uses high-density artwork where available
+PRODUCT_LOCALES += mdpi
 
 # proprietary side of the device
 $(call inherit-product-if-exists, vendor/htc/hero/device_hero-vendor.mk)
@@ -66,5 +70,7 @@ PRODUCT_COPY_FILES += \
     device/htc/hero/media_profiles.xml:/system/etc/media_profiles.xml
 
 # stuff common to all HTC phones
-$(call inherit-product, device/htc/common/common_small.mk)
+$(call inherit-product, device/htc/common/common.mk)
+
+$(call inherit-product, build/target/product/full.mk)
 

@@ -25,4 +25,4 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/generic.mk)
 
 # Discard inherited values and use our own instead.
 PRODUCT_NAME := generic_hero
-PRODUCT_DEVICE := hero,heroc
+PRODUCT_DEVICE := hero
