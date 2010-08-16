@@ -25,7 +25,8 @@ DEVICE_PACKAGE_OVERLAYS := device/htc/hero/overlay
 
 PRODUCT_PACKAGES += \
     librs_jni \
-    sensors.hero
+    sensors.hero \
+    lights.hero 
 
 # Passion uses high-density artwork where available
 PRODUCT_LOCALES += mdpi
