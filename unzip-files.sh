@@ -45,7 +45,14 @@ unzip -j -o ../../../${DEVICE}_update.zip -d ../../../vendor/htc/$DEVICE/proprie
 	 system/lib/libOmxH264Dec.so \
 	 system/lib/libOmxMpeg4Dec.so \
 	 system/lib/libOmxVidEnc.so \
-	 system/lib/hw/lights.msm7k.so
+	 system/lib/hw/lights.msm7k.so \
+	  	system/lib/hw/lights.msm7k.so \
+		system/lib/libomx_wmadec_sharedlibrary.so \
+		system/lib/libomx_wmvdec_sharedlibrary.so \
+		system/lib/libpvasfcommon.so \
+		system/lib/libpvasflocalpbreg.so \
+		system/lib/libpvasflocalpb.so \
+		system/etc/pvasflocal.cfg
 	 
 chmod 755 ../../../vendor/htc/$DEVICE/proprietary/akmd
 
@@ -97,6 +104,19 @@ PRODUCT_COPY_FILES += \\
     vendor/htc/__DEVICE__/proprietary/libOmxMpeg4Dec.so:system/lib/libOmxMpeg4Dec.so \\
     vendor/htc/__DEVICE__/proprietary/libOmxVidEnc.so:system/lib/libOmxVidEnc.so \\
     vendor/htc/__DEVICE__/proprietary/lights.msm7k.so:system/lib/hw/lights.msm7k.so \\
+EOF
+
+ifdef WITH_WINDOWS_MEDIA
+
+PRODUCT_COPY_FILES += \\
+    vendor/htc/__DEVICE__/proprietary/libomx_wmadec_sharedlibrary.so:system/lib/libomx_wmadec_sharedlibrary.so \\
+    vendor/htc/__DEVICE__/proprietary/libomx_wmvdec_sharedlibrary.so:system/lib/libomx_wmvdec_sharedlibrary.so \\
+    vendor/htc/__DEVICE__/proprietary/libpvasfcommon.so:system/lib/libpvasfcommon.so \\
+    vendor/htc/__DEVICE__/proprietary/libpvasflocalpbreg.so:system/lib/libpvasflocalpbreg.so \\
+    vendor/htc/__DEVICE__/proprietary/libpvasflocalpb.so:system/lib/libpvasflocalpb.so \\
+    vendor/htc/__DEVICE__/proprietary/pvasflocal.cfg:system/etc/pvasflocal.cfg
+endif
+
 EOF
 
 ./setup-makefiles.sh
