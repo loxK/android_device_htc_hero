@@ -70,7 +70,7 @@ EOF
 
 PRODUCT_SPECIFIC_DEFINES += TARGET_PRELINKER_MAP=\$(TOP)/device/htc/hero/prelink-linux-arm-hero.map
 
-BOARD_GPS_LIBRARIES := libgps
+BOARD_GPS_LIBRARIES := libgps librpc
 
 USE_CAMERA_STUB := false
 
