@@ -52,8 +52,26 @@ on boot
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chmod 0660                /sys/class/rfkill/rfkill0/state
 
+    # Permissions for Liblights.
+    chown system system /sys/class/leds/green/brightness
+    chown system system /sys/class/leds/green/blink
+    chown system system /sys/class/leds/amber/brightness
+    chown system system /sys/class/leds/amber/blink
+    chown system system /sys/class/leds/red/brightness
+    chown system system /sys/class/leds/red/blink
+    chown system system /sys/class/leds/blue/brightness
+    chown system system /sys/class/leds/blue/blink
+    chown system system /sys/class/leds/jogball-backlight/brightness
+    chown system system /sys/class/leds/jogball-backlight/color
+    chown system system /sys/class/leds/jogball-backlight/period
+    chown system system /sys/class/leds/jogball-backlight/blink
+    chown system system /sys/class/leds/jogball-backlight/off_timer
+    chown system system /sys/class/leds/button-backlight/brightness
+    chown system system /sys/class/leds/lcd-backlight/brightness
+
     # cpufreq configurations
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 245760
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 576000
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ondemand
     write /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate 40000
     write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold 85
@@ -61,9 +79,10 @@ on boot
     # Enable low memory killer to check file pages
     write /sys/module/lowmemorykiller/parameters/minfile 0,0,0,4632,5632,6144
     write /sys/module/lowmemorykiller/parameters/check_filepages 1
-    
-    # Boot animation
-	mkdir /data/local/bootanimation 0777 shell shell
+
+    # lowmem killer minfree adjustments
+    write /sys/module/lowmemorykiller/parameters/minfree 1536,2048,4096,9216,10240,10240
+
 
 # compass/accelerometer daemon
 service akmd /system/bin/akmd
