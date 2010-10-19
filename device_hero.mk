@@ -41,6 +41,8 @@ PRODUCT_PROPERTY_OVERRIDES := \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     rild.libpath=/system/lib/libhtc_ril.so \
+    ro.ril.hsxpa=2 \
+    ro.ril.gprsclass=10 \
     wifi.interface=tiwlan0
 
 # Time between scans in seconds. Keep it high to minimize battery drain.
