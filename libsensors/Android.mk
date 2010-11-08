@@ -13,9 +13,9 @@
 # limitations under the License.
 
 
-LOCAL_PATH := $(call my-dir)
+ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),hero)
 
-ifneq ($(TARGET_SIMULATOR),true)
+LOCAL_PATH := $(call my-dir)
 
 # HAL module implemenation, not prelinked and stored in
 # hw/<SENSORS_HARDWARE_MODULE_ID>.<ro.product.board>.so
@@ -39,4 +39,4 @@ include $(BUILD_SHARED_LIBRARY)
 #LOCAL_MODULE := sensors.trout
 #include $(BUILD_SHARED_LIBRARY)
 
-endif # !TARGET_SIMULATOR
+endif
