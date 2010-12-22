@@ -27,7 +27,10 @@ PRODUCT_COPY_FILES += \
     device/htc/hero/init.hero.rc:root/init.hero.rc
 
 PRODUCT_PACKAGES += \
-    VoiceDialer
+    VoiceDialer \
+    libOmxCore \
+    libOmxVenc \
+    libOmxVdec
 
 # Install the features available on this device.
 PRODUCT_COPY_FILES += \
