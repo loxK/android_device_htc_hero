@@ -67,7 +67,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     
 # Disable JIT by default
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.execution-mode=int:fast
+    dalvik.vm.execution-mode=int:jit \
+    dalvik.vm.heapsize=24m \
+    ro.compcache.default=0
     
 # media configuration xml file
 PRODUCT_COPY_FILES += \
