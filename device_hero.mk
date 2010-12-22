@@ -75,15 +75,14 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
 PRODUCT_COPY_FILES += \
-    device/htc/hero/modules/rpcsec_gss_krb5.ko:system/lib/modules/2.6.29-cyanogenmod/kernel/net/sunrpc/auth_gss/rpcsec_gss_krb5.ko \
-    device/htc/hero/modules/auth_rpcgss.ko:system/lib/modules/2.6.29-cyanogenmod/kernel/net/sunrpc/auth_gss/auth_rpcgss.ko \
-    device/htc/hero/modules/sunrpc.ko:system/lib/modules/2.6.29-cyanogenmod/kernel/net/sunrpc/sunrpc.ko \
-    device/htc/hero/modules/nfs.ko:system/lib/modules/2.6.29-cyanogenmod/kernel/fs/nfs/nfs.ko \
+    device/htc/hero/modules/modules.dep.bb:system/lib/modules/2.6.29-cyanogenmod/modules.dep.bb \
+    device/htc/hero/modules/modules.order:system/lib/modules/2.6.29-cyanogenmod/modules.order \
     device/htc/hero/modules/fuse.ko:system/lib/modules/2.6.29-cyanogenmod/kernel/fs/fuse/fuse.ko \
     device/htc/hero/modules/cifs.ko:system/lib/modules/2.6.29-cyanogenmod/kernel/fs/cifs/cifs.ko \
-    device/htc/hero/modules/nfs_acl.ko:system/lib/modules/2.6.29-cyanogenmod/kernel/fs/nfs_common/nfs_acl.ko \
-    device/htc/hero/modules/lockd.ko:system/lib/modules/2.6.29-cyanogenmod/kernel/fs/lockd/lockd.ko \
-    device/htc/hero/modules/ramzswap.ko:system/lib/modules/ramzswap.ko
+    device/htc/hero/modules/ip_gre.ko:system/lib/modules/2.6.29-cyanogenmod/net/ipv4/ip_gre.ko \
+    device/htc/hero/modules/hid-dummy.ko:system/lib/modules/2.6.29-cyanogenmod/drivers/hid/hid-dummy.ko \
+    device/htc/hero/modules/ramzswap.ko:system/lib/modules/ramzswap.ko \
+    device/htc/hero/modules/wlan.ko:system/lib/modules/wlan.ko
 
 # stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common.mk)
