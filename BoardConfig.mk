@@ -86,6 +86,9 @@ TARGET_BOOTLOADER_BOARD_NAME := hero
 TARGET_OTA_ASSERT_DEVICE := hero
 PRODUCT_BUILD_PROP_OVERRIDES += TARGET_BOOTLOADER_BOARD_NAME=hero
 
+# Use RGB565 surfaces until userspace drivers are upgraded
+BOARD_NO_RGBX_8888 := true
+
 # # cat /proc/mtd
 # dev:    size   erasesize  name
 # mtd0: 00040000 00020000 "misc"
