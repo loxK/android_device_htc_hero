@@ -76,10 +76,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/htc/hero/vold.fstab:system/etc/vold.fstab
 
-# wifi kernel module
-PRODUCT_COPY_FILES += \
-    device/htc/hero/modules/wlan.ko:system/lib/modules/wlan.ko
-
 # stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common.mk)
 

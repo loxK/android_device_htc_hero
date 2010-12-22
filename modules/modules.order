@@ -1,0 +1,8 @@
+kernel/fs/cifs/cifs.ko
+kernel/fs/fuse/fuse.ko
+kernel/drivers/net/wireless/tiwlan1251/wlan.ko
+kernel/drivers/hid/hid-dummy.ko
+kernel/drivers/staging/ramzswap/ramzswap.ko
+kernel/fake/sdio.ko
+kernel/fake/tiap_drv.ko
+kernel/net/ipv4/ip_gre.ko
