@@ -82,6 +82,7 @@ PRODUCT_COPY_FILES += \
     device/htc/hero/modules/ip_gre.ko:system/lib/modules/2.6.29-cyanogenmod/net/ipv4/ip_gre.ko \
     device/htc/hero/modules/hid-dummy.ko:system/lib/modules/2.6.29-cyanogenmod/drivers/hid/hid-dummy.ko \
     device/htc/hero/modules/ramzswap.ko:system/lib/modules/ramzswap.ko \
+    device/htc/hero/modules/wlan.ko:system/lib/modules/2.6.29-cyanogenmod/drivers/net/wireless/tiwlan1251/wlan.ko \
     device/htc/hero/modules/wlan.ko:system/lib/modules/wlan.ko
 
 # stuff common to all HTC phones
