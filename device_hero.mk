@@ -65,24 +65,26 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_COPY_FILES += \
     device/htc/hero/media_profiles.xml:/system/etc/media_profiles.xml
 
+# Kernel Targets
 ifeq ($(TARGET_PREBUILT_KERNEL),)
-LOCAL_KERNEL := device/htc/hero/kernel
+	LOCAL_KERNEL := device/htc/hero/kernel
 else
-LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
-
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
+KERNEL_NAME := 2.6.29.6-flykernel-12pre2
+
 PRODUCT_COPY_FILES += \
-    device/htc/hero/modules/modules.dep.bb:system/lib/modules/2.6.29-cyanogenmod/modules.dep.bb \
-    device/htc/hero/modules/modules.order:system/lib/modules/2.6.29-cyanogenmod/modules.order \
-    device/htc/hero/modules/fuse.ko:system/lib/modules/2.6.29-cyanogenmod/kernel/fs/fuse/fuse.ko \
-    device/htc/hero/modules/cifs.ko:system/lib/modules/2.6.29-cyanogenmod/kernel/fs/cifs/cifs.ko \
-    device/htc/hero/modules/ip_gre.ko:system/lib/modules/2.6.29-cyanogenmod/net/ipv4/ip_gre.ko \
-    device/htc/hero/modules/hid-dummy.ko:system/lib/modules/2.6.29-cyanogenmod/drivers/hid/hid-dummy.ko \
-    device/htc/hero/modules/ramzswap.ko:system/lib/modules/ramzswap.ko \
-    device/htc/hero/modules/wlan.ko:system/lib/modules/2.6.29-cyanogenmod/drivers/net/wireless/tiwlan1251/wlan.ko \
+    device/htc/hero/modules/modules.dep.bb:system/lib/modules/$(KERNEL_NAME)/modules.dep.bb \
+    device/htc/hero/modules/modules.order:system/lib/modules/$(KERNEL_NAME)/modules.order \
+    device/htc/hero/modules/ip_gre.ko:system/lib/modules/$(KERNEL_NAME)/net/ipv4/ip_gre.ko \
+    device/htc/hero/modules/wlan.ko:system/lib/modules/$(KERNEL_NAME)/drivers/net/wireless/tiwlan1251/wlan.ko \
+    device/htc/hero/modules/hid-dummy.ko:system/lib/modules/$(KERNEL_NAME)/drivers/hid/hid-dummy.ko \
+    device/htc/hero/modules/ramzswap.ko:system/lib/modules/$(KERNEL_NAME)/drivers/staging/ramzswap/ramzswap.ko \
+    device/htc/hero/modules/cifs.ko:system/lib/modules/$(KERNEL_NAME)/fs/cifs/cifs.ko \
+    device/htc/hero/modules/fuse.ko:system/lib/modules/$(KERNEL_NAME)/fs/fuse/fuse.ko \
     device/htc/hero/modules/wlan.ko:system/lib/modules/wlan.ko
 
 # stuff common to all HTC phones

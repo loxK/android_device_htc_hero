@@ -44,6 +44,8 @@ WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/wlan.ko"
 WIFI_DRIVER_MODULE_ARG      := ""
 WIFI_DRIVER_MODULE_NAME     := "wlan"
 WIFI_FIRMWARE_LOADER        := "wlan_loader"
+WIFI_DRIVER_FW_STA_PATH     := "/etc/firmware/tiinit_5.3.53.bts"
+WIFI_DRIVER_FW_AP_PATH      := "/etc/wifi/Fw1251r1c.bin"
 
 BOARD_USES_GENERIC_AUDIO := false
 
