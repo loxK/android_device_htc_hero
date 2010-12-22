@@ -78,7 +78,7 @@ PRODUCT_COPY_FILES += \
 
 # wifi kernel module
 PRODUCT_COPY_FILES += \
-    device/htc/hero/wlan.ko:system/lib/modules/wlan.ko
+    device/htc/hero/modules/wlan.ko:system/lib/modules/wlan.ko
 
 # stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common.mk)
