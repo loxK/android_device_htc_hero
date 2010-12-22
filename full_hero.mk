@@ -23,6 +23,9 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, device/htc/hero/device_hero_eu.mk)
 
+PRODUCT_COPY_FILES += \
+    device/htc/hero/init.hero.rc:root/init.hero.rc
+
 PRODUCT_PACKAGES += \
     VoiceDialer
 
@@ -35,6 +38,10 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml
 
+# Keylayouts
+PRODUCT_COPY_FILES += \
+    device/htc/hero/hero-keypad.kl:system/usr/keylayout/hero-keypad.kl \
+    device/htc/hero/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl
 
 PRODUCT_PROPERTY_OVERRIDES := \
     keyguard.no_require_sim=true \
@@ -65,7 +72,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # media configuration xml file
 PRODUCT_COPY_FILES += \
     device/htc/hero/media_profiles.xml:/system/etc/media_profiles.xml
-    
+
+PRODUCT_COPY_FILES += \
+    device/htc/hero/vold.fstab:system/etc/vold.fstab
+
+# wifi kernel module
+PRODUCT_COPY_FILES += \
+    device/htc/hero/wlan.ko:system/lib/modules/wlan.ko
+
 # stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common.mk)
 
