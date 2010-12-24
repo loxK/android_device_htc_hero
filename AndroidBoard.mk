@@ -15,50 +15,14 @@
 LOCAL_PATH := $(call my-dir)
 
 $(call add-radio-file,recovery/images/firmware_install.565)
-
-# Hero GSM
-
-#file := $(TARGET_OUT_KEYLAYOUT)/hero-keypad.kl
-#ALL_PREBUILT += $(file)
-#$(file) : $(LOCAL_PATH)/hero-keypad.kl | $(ACP)
-#	$(transform-prebuilt-to-target)
-
-#file := $(TARGET_ROOT_OUT)/init.hero.rc
-#ALL_PREBUILT += $(file)
-#$(file) : $(LOCAL_PATH)/init.hero.rc | $(ACP)
-#	$(transform-prebuilt-to-target)
+$(call add-radio-file,recovery/images/firmware_error.565)
+$(call add-radio-file,recovery/images/bitmap_size.txt)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := hero-keypad.kcm
 include $(BUILD_KEY_CHAR_MAP)
         
-# Hero generic
-
-$(call add-radio-file,recovery/images/firmware_error.565)
-$(call add-radio-file,recovery/images/bitmap_size.txt)
-
-#file := $(TARGET_OUT_KEYLAYOUT)/h2w_headset.kl
-#ALL_PREBUILT += $(file)
-#$(file) : $(LOCAL_PATH)/h2w_headset.kl | $(ACP)
-#	$(transform-prebuilt-to-target)
-
-#include $(CLEAR_VARS)
-#LOCAL_MODULE_TAGS := optional
-#LOCAL_MODULE_CLASS := ETC
-#LOCAL_MODULE := vold.fstab
-#LOCAL_SRC_FILES := $(LOCAL_MODULE)
-#include $(BUILD_PREBUILT)
-
-#include $(CLEAR_VARS)
-#LOCAL_MODULE_TAGS := optional
-#LOCAL_MODULE := wlan.ko
-#LOCAL_MODULE_TAGS := user
-#LOCAL_MODULE_CLASS := ETC
-#LOCAL_MODULE_PATH := $(TARGET_OUT)/lib/modules
-#LOCAL_SRC_FILES := $(LOCAL_MODULE)
-#include $(BUILD_PREBUILT)
-
 # the system properties for each device, loaded by init
 file := $(TARGET_OUT)/build.hero.prop
 ALL_PREBUILT += $(file)
