@@ -19,7 +19,10 @@ DEVICE_PACKAGE_OVERLAYS := device/htc/hero/overlay
 PRODUCT_PACKAGES += \
     librs_jni \
     sensors.hero \
-    lights.hero 
+    lights.hero \
+    wlan_loader \
+    tiwlan.ini \
+    dhcpcd.conf
 
 # Passion uses high-density artwork where available
 PRODUCT_LOCALES += mdpi
