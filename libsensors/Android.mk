@@ -34,7 +34,6 @@ LOCAL_SRC_FILES := 						\
 				InputEventReader.cpp	\
 				SensorBase.cpp			\
 				LightSensor.cpp			\
-				ProximitySensor.cpp		\
 				AkmSensor.cpp
 				
 LOCAL_SHARED_LIBRARIES := liblog libcutils
