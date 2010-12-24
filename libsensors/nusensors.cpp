@@ -82,11 +82,6 @@ sensors_poll_context_t::sensors_poll_context_t()
     mPollFds[light].events = POLLIN;
     mPollFds[light].revents = 0;
 
-    mSensors[proximity] = new ProximitySensor();
-    mPollFds[proximity].fd = mSensors[proximity]->getFd();
-    mPollFds[proximity].events = POLLIN;
-    mPollFds[proximity].revents = 0;
-
     mSensors[akm] = new AkmSensor();
     mPollFds[akm].fd = mSensors[akm]->getFd();
     mPollFds[akm].events = POLLIN;
