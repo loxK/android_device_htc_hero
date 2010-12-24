@@ -30,7 +30,6 @@
 
 #include "nusensors.h"
 #include "LightSensor.h"
-#include "ProximitySensor.h"
 #include "AkmSensor.h"
 
 /*****************************************************************************/
