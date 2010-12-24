@@ -13,30 +13,33 @@
 # limitations under the License.
 
 
-ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),hero)
-
 LOCAL_PATH := $(call my-dir)
 
-# HAL module implemenation, not prelinked and stored in
+ifneq ($(TARGET_SIMULATOR),true)
+
+# HAL module implemenation, not prelinked, and stored in
 # hw/<SENSORS_HARDWARE_MODULE_ID>.<ro.product.board>.so
 include $(CLEAR_VARS)
-LOCAL_PRELINK_MODULE := false
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
-LOCAL_SHARED_LIBRARIES := liblog libcutils
-LOCAL_SRC_FILES := sensors.c
+
 LOCAL_MODULE := sensors.hero
+
+LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
+
+LOCAL_MODULE_TAGS := optional
+
+LOCAL_CFLAGS := -DLOG_TAG=\"Sensors\"
+LOCAL_SRC_FILES := 						\
+				sensors.c 				\
+				nusensors.cpp 			\
+				InputEventReader.cpp	\
+				SensorBase.cpp			\
+				LightSensor.cpp			\
+				ProximitySensor.cpp		\
+				AkmSensor.cpp
+				
+LOCAL_SHARED_LIBRARIES := liblog libcutils
+LOCAL_PRELINK_MODULE := false
+
 include $(BUILD_SHARED_LIBRARY)
 
-# HAL module implemenation, not prelinked and stored in
-# hw/<SENSORS_HARDWARE_MODULE_ID>.<ro.product.board>.so
-#include $(CLEAR_VARS)
-#LOCAL_PRELINK_MODULE := false
-#LOCAL_MODULE_TAGS := optional
-#LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
-#LOCAL_SHARED_LIBRARIES := liblog libcutils
-#LOCAL_SRC_FILES := sensors.c
-#LOCAL_MODULE := sensors.trout
-#include $(BUILD_SHARED_LIBRARY)
-
-endif
+endif # !TARGET_SIMULATOR
