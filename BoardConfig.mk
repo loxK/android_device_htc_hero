@@ -22,6 +22,9 @@
 # against the traditional rules of inheritance).
 USE_CAMERA_STUB := true
 
+# Fake building with eclair cam
+BOARD_USES_ECLAIR_LIBCAMERA := true
+
 -include vendor/htc/hero/BoardConfigVendor.mk
 
 TARGET_BOARD_PLATFORM := msm7k
@@ -30,6 +33,10 @@ TARGET_BOARD_PLATFORM_GPU := qcom
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 TARGET_NO_RECOVERY := true
+
+TARGET_BOOTLOADER_BOARD_NAME := hero
+TARGET_OTA_ASSERT_DEVICE := hero
+PRODUCT_BUILD_PROP_OVERRIDES += TARGET_BOOTLOADER_BOARD_NAME=hero
 
 # ARMv6-compatible processor rev 5 (v6l)
 TARGET_CPU_ABI := armeabi-v6j
@@ -47,17 +54,15 @@ WIFI_FIRMWARE_LOADER        := "wlan_loader"
 WIFI_DRIVER_FW_STA_PATH     := "/etc/firmware/tiinit_5.3.53.bts"
 WIFI_DRIVER_FW_AP_PATH      := "/etc/wifi/Fw1251r1c.bin"
 
+BOARD_KERNEL_CMDLINE := no_console_suspend=1 console=null
+BOARD_KERNEL_BASE := 0x19200000
+
 BOARD_USES_GENERIC_AUDIO := false
 
 # Use HTC USB Function Switch to enable tethering via USB
-BOARD_USE_HTC_USB_FUNCTION_SWITCH := true
+# BOARD_USE_HTC_USB_FUNCTION_SWITCH := true
 
-BOARD_USE_HTC_LIBSENSORS := true
-BOARD_USE_HERO_LIBSENSORS := true
-BOARD_USES_QCOM_LIBS := true
-
-BOARD_KERNEL_CMDLINE := no_console_suspend=1 console=null
-BOARD_KERNEL_BASE := 0x19200000
+BOARD_USE_USB_MASS_STORAGE_SWITCH := true
 
 BOARD_HAVE_BLUETOOTH := true
 
@@ -65,9 +70,9 @@ BOARD_VENDOR_USE_AKMD := akm8973
 
 BOARD_VENDOR_QCOM_AMSS_VERSION := 6355
 
-# The size of a block that can be marked bad.
-BOARD_FLASH_BLOCK_SIZE := 131072
-#BOARD_CAMERA_LIBRARIES := libcameraservice libcamera
+BOARD_HAS_LIMITED_EGL := true
+
+TARGET_HARDWARE_3D := false
 
 # OpenGL drivers config file path
 BOARD_EGL_CFG := device/htc/hero/egl.cfg
@@ -75,24 +80,28 @@ BOARD_EGL_CFG := device/htc/hero/egl.cfg
 # No authoring clock for OpenCore
 # BOARD_NO_PV_AUTHORING_CLOCK := true
 
-# Use Eclair libcamera
+BOARD_USE_HTC_LIBSENSORS := true
+BOARD_USE_HERO_LIBSENSORS := true
 
-BOARD_USES_ECLAIR_LIBCAMERA := true
+# use old sensors HAL
+# TARGET_USES_OLD_LIBSENSORS_HAL := true
+
+BOARD_USES_QCOM_LIBS := true
+
+#BOARD_CAMERA_LIBRARIES := libcameraservice libcamera
+
+BOARD_USES_GPSSHIM := true
+
+TARGET_LIBAGL_USE_GRALLOC_COPYBITS := true
+
+BOARD_NO_RGBX_8888 := true
+
+JS_ENGINE := v8
 
 # No fallback font by default (space savings)
 # NO_FALLBACK_FONT:=true
 
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
-
-TARGET_BOOTLOADER_BOARD_NAME := hero
-TARGET_OTA_ASSERT_DEVICE := hero
-PRODUCT_BUILD_PROP_OVERRIDES += TARGET_BOOTLOADER_BOARD_NAME=hero
-
-# Use RGB565 surfaces until userspace drivers are upgraded
-BOARD_NO_RGBX_8888 := true
-
-# use old sensors HAL
-# TARGET_USES_OLD_LIBSENSORS_HAL := true
 
 # # cat /proc/mtd
 # dev:    size   erasesize  name
@@ -106,6 +115,9 @@ BOARD_BOOTIMAGE_PARTITION_SIZE := 0x00280000
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00500000
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x0aa00000
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x0a5c0000
+
+# The size of a block that can be marked bad.
+BOARD_FLASH_BLOCK_SIZE := 131072
 
 #TARGET_RECOVERY_UI_LIB := librecovery_ui_hero librecovery_ui_htc
 TARGET_PREBUILT_KERNEL := device/htc/hero/kernel
