@@ -92,7 +92,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += TARGET_BOOTLOADER_BOARD_NAME=hero
 BOARD_NO_RGBX_8888 := true
 
 # use old sensors HAL
-TARGET_USES_OLD_LIBSENSORS_HAL := true
+# TARGET_USES_OLD_LIBSENSORS_HAL := true
 
 # # cat /proc/mtd
 # dev:    size   erasesize  name
