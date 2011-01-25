@@ -102,6 +102,9 @@ BOARD_NO_RGBX_8888 := true
 
 JS_ENGINE := v8
 
+# Stagefright fully enabled
+BUILD_WITH_FULL_STAGEFRIGHT := true
+
 # No fallback font by default (space savings)
 # NO_FALLBACK_FONT:=true
 
