@@ -86,7 +86,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.execution-mode=int:jit \
     dalvik.vm.heapsize=24m \
-    ro.compcache.default=0
+    ro.compcache.default=0 \
+    persist.sys.use_dithering=0 \
+    debug.sf.hw=1
 
 # OpenGL ES 1.1-CM
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -96,7 +98,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Default network type
 # 0 => WCDMA Preferred.
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.telephony.default_network=1
+    ro.telephony.default_network=1 \
+    ro.com.google.locationfeatures=1
 
 # media configuration xml file
 PRODUCT_COPY_FILES += \
