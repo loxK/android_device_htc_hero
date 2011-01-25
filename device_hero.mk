@@ -42,8 +42,8 @@ PRODUCT_PACKAGES += \
     libOmxVdec \
     libmm-omxcore
 
-PRODUCT_PACKAGES += \
-    Gallery
+#Gallery 2d
+PRODUCT_PACKAGES += Gallery
 
 # Install the features available on this device.
 PRODUCT_COPY_FILES += \
