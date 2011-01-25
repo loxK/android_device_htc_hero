@@ -112,6 +112,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.default_network=1 \
     ro.com.google.locationfeatures=1
 
+# stagefright settings
+PRODUCT_PROPERTY_OVERRIDES += \
+    media.stagefright.enable-player=true \
+    media.stagefright.enable-meta=true \
+    media.stagefright.enable-scan=true \
+    media.stagefright.enable-http=true
+
 # media configuration xml file
 PRODUCT_COPY_FILES += \
     device/htc/hero/media_profiles.xml:/system/etc/media_profiles.xml
