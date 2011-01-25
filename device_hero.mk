@@ -59,6 +59,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=160
 
+# OpenGL ES 1.1-CM
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.opengles.version = 165537 \
+    ro.product.multi_touch_enabled=true
+
 # Default network type
 # 0 => WCDMA Preferred.
 PRODUCT_PROPERTY_OVERRIDES += \
