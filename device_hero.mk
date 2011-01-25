@@ -58,6 +58,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/htc/hero/hero-keypad.kl:system/usr/keylayout/hero-keypad.kl \
     device/htc/hero/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl
+    
+# GSM APN list
+PRODUCT_COPY_FILES += \
+    vendor/cyanogen/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
 
 PRODUCT_PROPERTY_OVERRIDES := \
     keyguard.no_require_sim=true \
