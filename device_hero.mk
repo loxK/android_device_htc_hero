@@ -78,6 +78,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.gprsclass=10 \
     wifi.interface=tiwlan0
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    windowsmgr.max_events_per_sec= 60 \
+    windowsmgr.support_rotation_270=true
+
 # Time between scans in seconds. Keep it high to minimize battery drain.
 # This only affects the case in which there are remembered access points,
 # but none are in range.
