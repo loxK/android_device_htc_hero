@@ -131,6 +131,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
     media.stagefright.enable-scan=true \
     media.stagefright.enable-http=true
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    settings.display.autobacklight=1 \
+    persist.service.mount.playsnd = 0 \
+    ro.com.google.locationfeatures = 1 \
+    ro.setupwizard.mode=OPTIONAL \
+    ro.setupwizard.enable_bypass=1 \
+    ro.media.dec.aud.wma.enabled=1 \
+    ro.media.dec.vid.wmv.enabled=1 \
+    dalvik.vm.dexopt-flags=m=y \
+    net.bt.name=Android \
+    ro.config.sync=yes
+
 # media configuration xml file
 PRODUCT_COPY_FILES += \
     device/htc/hero/media_profiles.xml:/system/etc/media_profiles.xml
