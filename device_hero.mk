@@ -31,8 +31,12 @@ $(call inherit-product-if-exists, vendor/htc/hero/device_hero-vendor.mk)
 
 PRODUCT_PACKAGES += \
     librs_jni \
+    hero-keypad.kcm \
     sensors.hero \
     lights.hero \
+    gralloc.msm7k \
+    copybit.msm7k \
+    gps.hero \
     wlan_loader \
     tiwlan.ini \
     dhcpcd.conf \
