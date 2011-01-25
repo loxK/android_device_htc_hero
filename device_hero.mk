@@ -42,6 +42,9 @@ PRODUCT_PACKAGES += \
     libOmxVdec \
     libmm-omxcore
 
+PRODUCT_PACKAGES += \
+    Gallery
+
 # Install the features available on this device.
 PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
