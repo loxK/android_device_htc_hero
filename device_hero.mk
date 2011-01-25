@@ -16,21 +16,33 @@
 
 DEVICE_PACKAGE_OVERLAYS := device/htc/hero/overlay
 
+# Passion uses high-density artwork where available
+PRODUCT_LOCALES += mdpi
+
+# Publish that we support the live wallpaper feature.
+PRODUCT_COPY_FILES += \
+    packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:/system/etc/permissions/android.software.live_wallpaper.xml
+    
+PRODUCT_COPY_FILES += \
+    device/htc/hero/vold.fstab:system/etc/vold.fstab
+
+# proprietary side of the device
+$(call inherit-product-if-exists, vendor/htc/hero/device_hero-vendor.mk)
+
 PRODUCT_PACKAGES += \
     librs_jni \
     sensors.hero \
     lights.hero \
     wlan_loader \
     tiwlan.ini \
-    dhcpcd.conf
+    dhcpcd.conf \
+    VoiceDialer \
+    libOmxCore \
+    libOmxVenc \
+    libOmxVdec \
+    libmm-omxcore
 
-# Passion uses high-density artwork where available
-PRODUCT_LOCALES += mdpi
-
-# proprietary side of the device
-$(call inherit-product-if-exists, vendor/htc/hero/device_hero-vendor.mk)
-
-# from device_dream_sapphire.mk
+# Install the features available on this device.
 PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
     frameworks/base/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
@@ -39,13 +51,24 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml
 
+PRODUCT_COPY_FILES += \
+    device/htc/hero/init.hero.rc:root/init.hero.rc
+
+# Keylayouts
+PRODUCT_COPY_FILES += \
+    device/htc/hero/hero-keypad.kl:system/usr/keylayout/hero-keypad.kl \
+    device/htc/hero/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl
+
 PRODUCT_PROPERTY_OVERRIDES := \
+    keyguard.no_require_sim=true \
     ro.media.dec.jpeg.memcap=10000000
 
 PRODUCT_PROPERTY_OVERRIDES += \
     rild.libpath=/system/lib/libhtc_ril.so \
     ro.ril.hsxpa=2 \
-    ro.ril.gprsclass=10 \
+    ro.ril.hsupa.category=5 \
+    ro.ril.def.agps.mode=2 \
+    ro.ril.def.agps.feature=1 \
     wifi.interface=tiwlan0
 
 # Time between scans in seconds. Keep it high to minimize battery drain.
@@ -58,6 +81,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # appropriately. If this property is not defined, the default value is 160 dpi. 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=160
+
+# Performences tweaks
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.execution-mode=int:jit \
+    dalvik.vm.heapsize=24m \
+    ro.compcache.default=0
 
 # OpenGL ES 1.1-CM
 PRODUCT_PROPERTY_OVERRIDES += \
