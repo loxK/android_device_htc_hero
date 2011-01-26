@@ -42,10 +42,8 @@ PRODUCT_PACKAGES += \
     dhcpcd.conf \
     VoiceDialer \
     libOmxCore \
-    libOmxVenc \
-    libOmxVdec \
-    libmm-omxcore \
-    libcamera
+    libOmxVidEnc \
+    libmm-omxcore
 
 #Gallery 2d
 PRODUCT_PACKAGES += Gallery
