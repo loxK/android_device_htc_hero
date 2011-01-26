@@ -44,7 +44,8 @@ PRODUCT_PACKAGES += \
     libOmxCore \
     libOmxVenc \
     libOmxVdec \
-    libmm-omxcore
+    libmm-omxcore \
+    libcamera
 
 #Gallery 2d
 PRODUCT_PACKAGES += Gallery
