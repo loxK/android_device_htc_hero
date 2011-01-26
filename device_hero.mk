@@ -63,7 +63,8 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
 
 PRODUCT_COPY_FILES += \
-    device/htc/hero/init.hero.rc:root/init.hero.rc
+    device/htc/hero/init.hero.rc:root/init.hero.rc \
+    device/htc/hero/ueventd.hero.rc:root/ueventd.hero.rc
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
