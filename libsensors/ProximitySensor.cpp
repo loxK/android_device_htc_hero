@@ -22,64 +22,65 @@
 #include <dirent.h>
 #include <sys/select.h>
 
-#include <linux/lightsensor.h>
+#include <linux/capella_cm3602.h>
 
 #include <cutils/log.h>
 
-#include "LightSensor.h"
+#include "ProximitySensor.h"
 
 /*****************************************************************************/
 
-LightSensor::LightSensor()
-    : SensorBase(LS_DEVICE_NAME, "lightsensor-level"),
+ProximitySensor::ProximitySensor()
+    : SensorBase(CM_DEVICE_NAME, "proximity"),
       mEnabled(0),
       mInputReader(4),
       mHasPendingEvent(false)
 {
     mPendingEvent.version = sizeof(sensors_event_t);
-    mPendingEvent.sensor = ID_L;
-    mPendingEvent.type = SENSOR_TYPE_LIGHT;
+    mPendingEvent.sensor = ID_P;
+    mPendingEvent.type = SENSOR_TYPE_PROXIMITY;
     memset(mPendingEvent.data, 0, sizeof(mPendingEvent.data));
 
-     open_device();
+    open_device();
 
     int flags = 0;
-    if (!ioctl(dev_fd, LIGHTSENSOR_IOCTL_GET_ENABLED, &flags)) {
+    if (!ioctl(dev_fd, CAPELLA_CM3602_IOCTL_GET_ENABLED, &flags)) {
+        mEnabled = 1;
         if (flags) {
-            mEnabled = 1;
             setInitialState();
         }
     }
-
     if (!mEnabled) {
         close_device();
     }
 }
 
-LightSensor::~LightSensor() {
+ProximitySensor::~ProximitySensor() {
 }
 
-int LightSensor::setInitialState() {
+int ProximitySensor::setInitialState() {
     struct input_absinfo absinfo;
-    if (!ioctl(data_fd, EVIOCGABS(EVENT_TYPE_LIGHT), &absinfo)) {
-        mPendingEvent.light = indexToValue(absinfo.value);
+    if (!ioctl(data_fd, EVIOCGABS(EVENT_TYPE_PROXIMITY), &absinfo)) {
+        // make sure to report an event immediately
         mHasPendingEvent = true;
+        mPendingEvent.distance = indexToValue(absinfo.value);
     }
     return 0;
 }
 
-int LightSensor::enable(int32_t, int en) {
-    int flags = en ? 1 : 0;
+int ProximitySensor::enable(int32_t, int en) {
+    int newState = en ? 1 : 0;
     int err = 0;
-    if (flags != mEnabled) {
+    if (newState != mEnabled) {
         if (!mEnabled) {
             open_device();
         }
-        err = ioctl(dev_fd, LIGHTSENSOR_IOCTL_ENABLE, &flags);
+        int flags = newState;
+        err = ioctl(dev_fd, CAPELLA_CM3602_IOCTL_ENABLE, &flags);
         err = err<0 ? -errno : 0;
-        LOGE_IF(err, "LIGHTSENSOR_IOCTL_ENABLE failed (%s)", strerror(-err));
+        LOGE_IF(err, "CAPELLA_CM3602_IOCTL_ENABLE failed (%s)", strerror(-err));
         if (!err) {
-            mEnabled = en ? 1 : 0;
+            mEnabled = newState;
             if (en) {
                 setInitialState();
             }
@@ -91,11 +92,11 @@ int LightSensor::enable(int32_t, int en) {
     return err;
 }
 
-bool LightSensor::hasPendingEvents() const {
+bool ProximitySensor::hasPendingEvents() const {
     return mHasPendingEvent;
 }
 
-int LightSensor::readEvents(sensors_event_t* data, int count)
+int ProximitySensor::readEvents(sensors_event_t* data, int count)
 {
     if (count < 1)
         return -EINVAL;
@@ -117,11 +118,8 @@ int LightSensor::readEvents(sensors_event_t* data, int count)
     while (count && mInputReader.readEvent(&event)) {
         int type = event->type;
         if (type == EV_ABS) {
-            if (event->code == EVENT_TYPE_LIGHT) {
-                if (event->value != -1) {
-                    // FIXME: not sure why we're getting -1 sometimes
-                    mPendingEvent.light = indexToValue(event->value);
-                }
+            if (event->code == EVENT_TYPE_PROXIMITY) {
+                mPendingEvent.distance = indexToValue(event->value);
             }
         } else if (type == EV_SYN) {
             mPendingEvent.timestamp = timevalToNano(event->time);
@@ -131,7 +129,7 @@ int LightSensor::readEvents(sensors_event_t* data, int count)
                 numEventReceived++;
             }
         } else {
-            LOGE("LightSensor: unknown event (type=%d, code=%d)",
+            LOGE("ProximitySensor: unknown event (type=%d, code=%d)",
                     type, event->code);
         }
         mInputReader.next();
@@ -140,15 +138,7 @@ int LightSensor::readEvents(sensors_event_t* data, int count)
     return numEventReceived;
 }
 
-float LightSensor::indexToValue(size_t index) const
+float ProximitySensor::indexToValue(size_t index) const
 {
-    static const float luxValues[10] = {
-            0.0, 33.0, 77.0, 220.0, 308.0,
-            397.0, 485.0, 698.0, 860.0, 1023.0
-    };
-
-    const size_t maxIndex = sizeof(luxValues)/sizeof(*luxValues) - 1;
-    if (index > maxIndex)
-        index = maxIndex;
-    return luxValues[index];
+    return index * PROXIMITY_THRESHOLD_CM;
 }
