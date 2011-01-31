@@ -138,6 +138,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.setupwizard.enable_bypass=1 \
     ro.media.dec.aud.wma.enabled=1 \
     ro.media.dec.vid.wmv.enabled=1 \
+    ro.media.dec.aud.flac.enabled = 1 \
+    ro.media.dec.aud.ape.enabled = 1 \
+    ro.media.dec.vid.avi.enabled = 1 \
+    ro.media.dec.vid.flv.enabled = 1 \
+    ro.media.dec.vid.qt.enabled = 1 \
+    ro.media.dec.vid.rm.enabled = 1 \
     dalvik.vm.dexopt-flags=m=y \
     net.bt.name=Android \
     ro.config.sync=yes
