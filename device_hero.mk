@@ -111,10 +111,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # OpenGL ES 1.1-CM
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.opengles.version = 65537 \
+    ro.opengles.version = 65536 \
     debug.sf.hw=1 \
-    video.accelerate.hw =1 \
-    debug.performance.tuning =1 \
     ro.product.multi_touch_enabled=true
 
 # Default network type
@@ -136,9 +134,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.google.locationfeatures = 1 \
     ro.setupwizard.mode=OPTIONAL \
     ro.setupwizard.enable_bypass=1 \
-    ro.media.dec.aud.wma.enabled=1 \
-    ro.media.dec.vid.wmv.enabled=1 \
-    dalvik.vm.dexopt-flags=m=y \
     net.bt.name=Android \
     ro.config.sync=yes
 

@@ -46,8 +46,6 @@ unzip -j -o ../../../${DEVICE}_update.zip -d ../../../vendor/htc/$DEVICE/proprie
 	 system/lib/libOmxMpeg4Dec.so \
 	 system/lib/libOmxVidEnc.so \
 	 system/lib/hw/lights.msm7k.so \
-		system/lib/libomx_wmadec_sharedlibrary.so \
-		system/lib/libomx_wmvdec_sharedlibrary.so \
 		system/lib/libpvasfcommon.so \
 		system/lib/libpvasflocalpbreg.so \
 		system/lib/libpvasflocalpb.so \
