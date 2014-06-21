@@ -71,8 +71,6 @@ BOARD_VENDOR_QCOM_AMSS_VERSION := 6355
 
 BOARD_USES_QCOM_HARDWARE := true
 
-BOARD_HAS_LIMITED_EGL := true
-
 TARGET_HARDWARE_3D := false
 
 # OpenGL drivers config file path

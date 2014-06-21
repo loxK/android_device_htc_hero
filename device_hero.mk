@@ -45,9 +45,6 @@ PRODUCT_PACKAGES += \
     libOmxVidEnc \
     libmm-omxcore
 
-#Gallery 2d
-PRODUCT_PACKAGES += Gallery
-
 # Install the features available on this device.
 PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
@@ -111,11 +108,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapsize=24m \
     ro.compcache.default=0 \
     persist.sys.use_dithering=0 \
-    debug.sf.hw=1
 
 # OpenGL ES 1.1-CM
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.opengles.version = 165537 \
+    ro.opengles.version = 65536 \
+    debug.sf.hw=1 \
     ro.product.multi_touch_enabled=true
 
 # Default network type
@@ -137,9 +134,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.google.locationfeatures = 1 \
     ro.setupwizard.mode=OPTIONAL \
     ro.setupwizard.enable_bypass=1 \
-    ro.media.dec.aud.wma.enabled=1 \
-    ro.media.dec.vid.wmv.enabled=1 \
-    dalvik.vm.dexopt-flags=m=y \
     net.bt.name=Android \
     ro.config.sync=yes
 
